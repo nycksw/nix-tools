@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     amass
     curl
+    delta
     deskflow
     evil-winrm
     exploitdb
