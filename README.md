@@ -24,7 +24,7 @@ Nix](https://github.com/DeterminateSystems/nix-installer):
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
 ```
 
-Ensure your `PATH` is updated appropriately to include the `nix` command.
+Ensure the `nix` command is in your `PATH`.
 
 Determinite Nix enables Flakes by default. The `home-manager` tool won't be
 built yet, so it has to be built using `nix run`:
