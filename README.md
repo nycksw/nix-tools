@@ -1,6 +1,6 @@
 # Nix Home Manager for Userland Tools
 
-The goal all your favorite userland tools in a moment on practically any
+Install all your favorite userland tools in a moment on practically any
 distribution.
 
 This is _not_ for dotfiles, because for those I use
