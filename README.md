@@ -2,7 +2,7 @@
 
 This setup provides an easy, fast, and distribution-independent way to install your essential userland tools on any machine. It is designed specifically for managing the installation of software, not their configuration files (dotfiles), although this pairs nicely with [OCD](https://github.com/nycksw/ocd) for tracking those.
 
-This is _not_ minimal in terms of disk usage. Using Nix in this way trades disk space for immutability and side-effect-free upgrades. [This example](https://github.com/nycksw/nix-tools/blob/2f790b6629b3dcc385dc0ed348f5f2176153f067/home.nix) of `home.nix` uses 14G. So, it's fine for your workstations that have lots of free space, but it may not be appropriate for your Kali VMs.
+Using Nix in this way trades disk space for immutability and side-effect-free upgrades. [This example](https://github.com/nycksw/nix-tools/blob/2f790b6629b3dcc385dc0ed348f5f2176153f067/home.nix) of `home.nix` uses 14G. So, it's fine for your workstations that have lots of free space, but it may not be appropriate for your Kali VMs.
 
 ## Installation
 
