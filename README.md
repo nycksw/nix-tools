@@ -1,6 +1,6 @@
 # Userland Tools with Nix Home Manager
 
-This setup provides a minimal, distribution-independent way to install your essential userland tools on any machine. It is designed specifically for managing the installation of software, not their configuration files (dotfiles).
+This setup provides a minimal, distribution-independent way to install your essential userland tools on any machine. It is designed specifically for managing the installation of software, not their configuration files (dotfiles), although this pairs nicely with [OCD](https://github.com/nycksw/ocd) for tracking those.
 
 ## Installation
 
