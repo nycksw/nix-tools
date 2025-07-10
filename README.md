@@ -2,6 +2,8 @@
 
 This setup provides a minimal, distribution-independent way to install your essential userland tools on any machine. It is designed specifically for managing the installation of software, not their configuration files (dotfiles), although this pairs nicely with [OCD](https://github.com/nycksw/ocd) for tracking those.
 
+Using Nix in this way trades disk space for immutability and side-effect-free upgrades. My `home-nix` includes just a few dozen tools and uses more than 14G. However, mine includes Metasploit and two separate Python3 libraries so it's not intended to be lean.
+
 ## Installation
 
 ### Prerequisites
