@@ -1,55 +1,61 @@
-# Nix Home Manager for Userland Tools
+# Userland Tools with Nix Home Manager
 
-Install all your favorite userland tools in a moment on practically any
-distribution.
+This setup provides a minimal, distribution-independent way to install your essential userland tools on any machine. It is designed specifically for managing the installation of software, not their configuration files (dotfiles).
 
-This is _not_ for dotfiles, because for those I use
-[OCD](https://github.com/nycksw/ocd), which is just Git using `$HOME` as the
-work tree. It doesn't get any simpler than that. For _tools_, I want a
-similarly minimal way to install just about everything I typically need, and
-in a way that's as distribution-independent as possible. That's what this is.
+## Installation
 
-## Installing
+### Prerequisites
 
-You must modify
-[home.nix](https://github.com/nycksw/nix-tools/blob/main/home.nix) with your
-own username and home directory. Alternatively you could use `builtins.getEnv`
-(for `$HOME` and `$USER`)  but then you'll need to add `--impure` to the
-`home-manager` commands below, since the build would no longer be hermetic.
+First, install Nix with Flakes support using the [Determinite
+Nix installer](https://github.com/DeterminateSystems/nix-installer). This installer enables Flakes by default.
 
-Next, install [Determinite
-Nix](https://github.com/DeterminateSystems/nix-installer):
-
-```
-curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
+```bash
+curl -fsSL [https://install.determinate.systems/nix](https://install.determinate.systems/nix) | sh -s -- install --determinate
 ```
 
-Ensure the `nix` command is in your `PATH`.
+Ensure the `nix` command is available in your `PATH`. Next, clone the repository:
 
-Determinite Nix enables Flakes by default. The `home-manager` tool won't be
-built yet, so it has to be built using `nix run`:
-
-```
+```bash
 git clone git@github.com:nycksw/nix-tools.git && cd nix-tools
+```
+
+### Configuration
+
+Before installing, you must configure your user details in `home.nix`. You have two options:
+
+* **Option A (Recommended):** Hardcode your username and home directory directly in the `home.nix` file.
+* **Option B (Impure):** Use `builtins.getEnv "USER"` and `builtins.getEnv "HOME"`. This makes the build non-hermetic, requiring you to add the `--impure` flag to all `home-manager` commands.
+
+### First-Time Setup
+
+Run the following command to build Home Manager and apply the configuration for the first time:
+
+```bash
 nix run home-manager -- switch --flake .
 ```
 
-That installs everything from
-[`home.nix`](https://github.com/nycksw/nix-tools/blob/main/home.nix) and
-provides `home-manager`. Subsequent updates are just:
+This command installs all packages defined in `home.nix`.
 
-```
+### 4. Updating
+
+After the initial setup, you can update your installed packages by running the `switch` command from anywhere:
+
+```bash
 home-manager switch --flake ~/nix-tools
 ```
 
-## Which Packages to Include?
+---
 
-My rule: if I can add it to the config without too much additional complexity,
-e.g. no NixGL, no complicated overlays, and it's all in userland, then
-it [belongs](https://github.com/nycksw/nix-tools/blob/main/home.nix).
-Otherwise I'm happy to install the tool manually or with a traditional
-package manager.
+## Package Selection
 
-## Housekeeping
+The guiding principle for including a package in this configuration is simplicity. This method is best for userland tools that can be added without complex overlays or specialized graphics handling (like NixGL). For more complex software, a traditional package manager may be a better fit.
 
-Run `nix-collect-garbage -d` to free up space.
+---
+
+## Maintenance
+
+To reclaim disk space, periodically run the Nix garbage collector to remove old, unused package versions:
+
+```bash
+nix-collect-garbage -d
+```
